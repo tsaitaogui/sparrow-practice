@@ -32,7 +32,7 @@ VM* vm = newVM();
       }
       printf("]\n");
    }
-
+printf("%s\n","done");
 }
 
 int main(int argc, char *argv[])

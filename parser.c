@@ -42,7 +42,8 @@ static TokenType idOrkeyword(const char* start, uint32_t length) {
    while (keywordsToken[idx].keyword != NULL) {
       if (keywordsToken[idx].length == length && \
 	    memcmp(keywordsToken[idx].keyword, start, length) == 0) {
-	 	return keywordsToken[idx].token-1;
+	    	printf("%s", "really?");
+	 	return keywordsToken[idx].token;
       }
       idx++;
    }
@@ -425,6 +426,7 @@ void consumeNextToken(Parser* parser, TokenType expected, const char* errMsg) {
 //由于sourceCode未必?自于文件file,有可能只是?字符串,
 //file?用作跟?待??的代?的??,方便??
 void initParser(VM* vm, Parser* parser, const char* file, const char* sourceCode) {
+   printf("src=%s\n", sourceCode);
    parser->file = file;
    parser->sourceCode = sourceCode;
    parser->curChar = *parser->sourceCode;

@@ -9,7 +9,7 @@ char* rootDir = NULL;   //根目?
 //?取源代?文件
 char* readFile(const char* path) {
 	
-   FILE* file = fopen(path, "r");
+   FILE* file = fopen(path, "rb");
    if (file == NULL) {
       IO_ERROR("Could`t open file \"%s\".\n", path);
    }
@@ -23,16 +23,12 @@ char* readFile(const char* path) {
 
    size_t numRead = fread(fileContent, sizeof(char), fileSize, file);
    printf("numRead=%d, fileSize=%d \n", numRead, fileSize);
-/** /
+
    if (numRead < fileSize) {
       IO_ERROR("111Could`t read file \"%s\".\n", path);
    }
-   //*/
+
    fileContent[fileSize] = '\0';
-   int i;
-   for (i = 0; i < fileSize; i++) {
-   	printf("%c", fileContent[i]);
-   }
    fclose(file);
    return fileContent;
 }

@@ -19,4 +19,7 @@ class Family < People {
 var f = Family.new("wbf", "ls", "shine")
 f.sayHi()
 
-fn() 
+fn()
+
+
+
