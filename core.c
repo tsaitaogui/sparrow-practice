@@ -8,11 +8,11 @@ char* rootDir = NULL;   //根目?
 
 //?取源代?文件
 char* readFile(const char* path) {
+	
    FILE* file = fopen(path, "r");
    if (file == NULL) {
       IO_ERROR("Could`t open file \"%s\".\n", path);
    }
-
    struct stat fileStat;
    stat(path, &fileStat);
    size_t fileSize = fileStat.st_size;
@@ -22,11 +22,17 @@ char* readFile(const char* path) {
    }
 
    size_t numRead = fread(fileContent, sizeof(char), fileSize, file);
+   printf("numRead=%d, fileSize=%d \n", numRead, fileSize);
+/** /
    if (numRead < fileSize) {
-      IO_ERROR("Could`t read file \"%s\".\n", path);
+      IO_ERROR("111Could`t read file \"%s\".\n", path);
    }
+   //*/
    fileContent[fileSize] = '\0';
-   
+   int i;
+   for (i = 0; i < fileSize; i++) {
+   	printf("%c", fileContent[i]);
+   }
    fclose(file);
    return fileContent;
 }

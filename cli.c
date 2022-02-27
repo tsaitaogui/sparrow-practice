@@ -12,11 +12,26 @@ static void runFile(const char* path) {
       memcpy(root, path, lastSlash - path + 1);
       root[lastSlash - path + 1] = '\0';
       rootDir = root;
-      printf("%s is existed!\n", path);
-   } else {
-   	  printf("%s is not existed!\n", path);
    }
 
+VM* vm = newVM();
+   const char* sourceCode = readFile(path);
+
+   struct parser parser;
+   initParser(vm, &parser, path, sourceCode);
+
+   #include "tokenlist.c"
+   
+   while (parser.curToken.type != TOKEN_EOF) {
+      getNextToken(&parser);
+      printf("%dL-tokenArray[%d]: %s [", parser.curToken.lineNo, \
+      	parser.curToken.type,tokenArray[parser.curToken.type]);
+      uint32_t idx = 0;
+      while (idx < parser.curToken.length) {
+	 	printf("%c", *(parser.curToken.start+idx++));
+      }
+      printf("]\n");
+   }
 
 }
 
