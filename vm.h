@@ -3,6 +3,7 @@
 #include "common.h"
 
 struct vm {
+   Class* stringClass;
    uint32_t allocatedBytes; 
    Parser* curParser;
 };
